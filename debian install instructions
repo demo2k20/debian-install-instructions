@@ -1,0 +1,33 @@
+edit the sources list:
+comment out second line
+add contrib and non-free to everything
+
+install sudo:
+su
+apt install sudo
+usermod -aG sudo user
+sudo visudo
+user ALL=(ALL:ALL) NOPASSWD:ALL
+
+install firmwares:
+sudo apt install firmware-linux firmware-linux-nonfree
+
+install xorg:
+sudo apt install xorg xserver-xorg xinit xutils mesa-utils
+
+install nvidia driver detector:
+sudo apt install nvidia-detect
+
+or install virtualbox guest additions:
+sudo apt install xserver-xorg-video-vmware
+sudo apt install build-essential dkms linux-headers-$(uname -r)
+insert the guest additions iso from vbox menu
+sudo mkdir -p /mnt/cdrom
+sudo mount /dev/cdrom /mnt/cdrom
+cd /mnt/cdrom
+sudo ./VBoxLinuxAdditions.run --nox11
+sudo reboot
+check to see of it worked: lsmod | grep vboxguest
+add VBoxClient-all & to .xinitrc
+
+then just install a wm
